@@ -1,0 +1,12 @@
+serverConfig:
+    ruleAddress:   "rule"
+    ticketAddress: "ticket"
+    port:          8080
+SQLConfig:
+    host:          "localhost"
+    port:          5432
+    username:      "postgres"
+    password:      "Ah1381/10/27"
+    dataBase:      "bootcamp"
+    schema:        "private"
+    table:         "rules"
