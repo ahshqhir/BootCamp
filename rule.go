@@ -18,10 +18,14 @@ type Rule struct {
 	Value     string   `json:"amountValue"`
 }
 
-func addRule(c *gin.Context) {
+func addRule(c *gin.Context, db DB, rdb RDB) {
 	var rules []Rule
 	err := c.BindJSON(&rules)
 	if err != nil {
 		return
+	}
+	for _, rule := range rules {
+		db.addRule(rule)
+		rdb.addRule(rule)
 	}
 }

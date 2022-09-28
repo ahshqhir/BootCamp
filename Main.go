@@ -13,7 +13,14 @@ func main() {
 	}
 	serverConfig := config.ServerConfig
 	sqlConfig := config.SQLConfig
-	_, err = connectDB(sqlConfig)
+	redisConfig := config.RedisConfig
+	var rdb RDB
+	var db DB
+	rdb, err = connectRDB(redisConfig)
+	if err != nil {
+		panic(err)
+	}
+	db, err = connectDB(sqlConfig, rdb)
 	if err != nil {
 		panic(err)
 	}
@@ -25,8 +32,12 @@ func main() {
 		panic(err)
 	}
 
-	router.GET(serverConfig.RuleAddress, addRule)
-	router.POST(serverConfig.RuleAddress, addRule)
+	router.GET(serverConfig.RuleAddress, func(ctx *gin.Context) {
+		addRule(ctx, db, rdb)
+	})
+	router.POST(serverConfig.RuleAddress, func(ctx *gin.Context) {
+		addRule(ctx, db, rdb)
+	})
 	//router.GET(serverConfig.TicketAddress, )
 	//router.GET(serverConfig.TicketAddress, )
 

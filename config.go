@@ -8,6 +8,7 @@ import (
 type Config struct {
 	ServerConfig ServerConfig `yaml:"serverConfig"`
 	SQLConfig    SQLConfig    `yaml:"SQLConfig"`
+	RedisConfig  RedisConfig  `yaml:"redisConfig"`
 }
 
 type ServerConfig struct {
@@ -24,6 +25,14 @@ type SQLConfig struct {
 	DataBase string `yaml:"dataBase"`
 	Schema   string `yaml:"schema"`
 	Table    string `yaml:"table"`
+}
+
+type RedisConfig struct {
+	Address  string `yaml:"address"`
+	Port     int    `yaml:"port"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	DataBase int    `yaml:"dataBase"`
 }
 
 func loadConfig(file string) (Config, error) {

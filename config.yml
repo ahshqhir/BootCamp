@@ -10,3 +10,9 @@ SQLConfig:
     dataBase:      "bootcamp"
     schema:        "private"
     table:         "rules"
+redisConfig:
+    address:       "192.168.220.128"
+    port:          6379
+    username:      ""
+    password:      ""
+    dataBase:      0

@@ -12,7 +12,7 @@ type DB struct {
 	Config SQLConfig
 }
 
-func connectDB(con SQLConfig) (DB, error) {
+func connectDB(con SQLConfig, rdb RDB) (DB, error) {
 	conStr := fmt.Sprintf("host='%s' port=%d user='%s' "+
 		"password='%s' dbname='%s' sslmode=disable",
 		con.Host, con.Port, con.Username, con.Password, con.DataBase)
@@ -22,7 +22,7 @@ func connectDB(con SQLConfig) (DB, error) {
 	}
 
 	var rows *sql.Rows
-	rows, err = db.Query(fmt.Sprintf("SELECT * FROM %s;", con.Table))
+	rows, err = db.Query(fmt.Sprintf("SELECT * FROM %s.%s;", con.Schema, con.Table))
 	if err == nil {
 		for rows.Next() {
 			break
@@ -91,4 +91,8 @@ func createTable(db *sql.DB, con SQLConfig) error {
 		"PRIMARY KEY (\"ID\")\n);\nALTER TABLE IF EXISTS %s.%s\nOWNER to %s;",
 		con.Schema, con.Table, con.Schema, con.Table, con.Username))
 	return err
+}
+
+func (db DB) addRule(rule Rule) {
+
 }
