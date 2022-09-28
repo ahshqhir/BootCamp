@@ -30,3 +30,7 @@ func connectRDB(con RedisConfig) (RDB, error) {
 func (rdb RDB) addRule(rule Rule) {
 
 }
+
+func (rdb RDB) updateTicket(ticket *Ticket) {
+
+}
