@@ -9,7 +9,11 @@ SQLConfig:
     password:      "Ah1381/10/27"
     dataBase:      "bootcamp"
     schema:        "private"
-    table:         "rules"
+    ruleTable:     "rules"
+    cityTable:     "cities"
+    airlineTable:  "airlines"
+    agencyTable:   "agencies"
+    supplierTable: "suppliers"
 redisConfig:
     address:       "192.168.220.128"
     port:          6379

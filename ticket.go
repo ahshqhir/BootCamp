@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 type Ticket struct {
 	Origin       string `json:"origin"`
@@ -19,7 +22,8 @@ func updateTicket(c *gin.Context, rdb RDB) {
 	if err != nil {
 		return
 	}
-	for _, ticket := range tickets {
-		rdb.updateTicket(&ticket)
+	for i := range tickets {
+		rdb.updateTicket(&tickets[i])
 	}
+	c.IndentedJSON(http.StatusOK, tickets)
 }

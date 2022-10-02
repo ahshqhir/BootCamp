@@ -18,13 +18,17 @@ type ServerConfig struct {
 }
 
 type SQLConfig struct {
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
-	DataBase string `yaml:"dataBase"`
-	Schema   string `yaml:"schema"`
-	Table    string `yaml:"table"`
+	Host          string `yaml:"host"`
+	Port          int    `yaml:"port"`
+	Username      string `yaml:"username"`
+	Password      string `yaml:"password"`
+	DataBase      string `yaml:"dataBase"`
+	Schema        string `yaml:"schema"`
+	RuleTable     string `yaml:"ruleTable"`
+	CityTable     string `yaml:"cityTable"`
+	AirlineTable  string `yaml:"airlineTable"`
+	AgencyTable   string `yaml:"agencyTable"`
+	SupplierTable string `yaml:"supplierTable"`
 }
 
 type RedisConfig struct {
